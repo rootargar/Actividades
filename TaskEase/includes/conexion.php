@@ -1,32 +1,32 @@
 <?php
 /**
- * Archivo de Conexión a SQL Server
+ * Archivo de Conexión a MySQL
  * TaskEase - Sistema de Gestión de Tareas
  *
- * Configuración de conexión a SQL Server usando PDO
+ * Configuración de conexión a MySQL usando PDO
  * PDO proporciona una capa de abstracción de datos y soporte para prepared statements
  */
 
 // Configuración de la base de datos
 define('DB_SERVER', 'localhost');
 define('DB_NAME', 'TaskEaseDB');
-define('DB_USERNAME', 'sa');
-define('DB_PASSWORD', 'tu_contraseña_aqui');
+define('DB_USERNAME', 'root');
+define('DB_PASSWORD', '');  // Cambiar según tu configuración
 
 // Variable global de conexión
 $connection = null;
 
 try {
-    // Crear conexión PDO a SQL Server
-    // DSN (Data Source Name) para SQL Server
-    $dsn = "sqlsrv:Server=" . DB_SERVER . ";Database=" . DB_NAME;
+    // Crear conexión PDO a MySQL
+    // DSN (Data Source Name) para MySQL
+    $dsn = "mysql:host=" . DB_SERVER . ";dbname=" . DB_NAME . ";charset=utf8mb4";
 
     // Opciones de PDO para mejorar seguridad y rendimiento
     $options = array(
         PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,  // Modo de error: excepciones
         PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,  // Modo de fetch por defecto: array asociativo
         PDO::ATTR_EMULATE_PREPARES => false,  // No emular prepared statements
-        PDO::SQLSRV_ATTR_ENCODING => PDO::SQLSRV_ENCODING_UTF8  // Codificación UTF-8
+        PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8mb4 COLLATE utf8mb4_unicode_ci"  // Codificación UTF-8
     );
 
     // Crear la conexión
