@@ -131,24 +131,25 @@ function validateEmail($email) {
 
 /**
  * Función para hashear contraseñas
- * Usa bcrypt (algoritmo seguro)
+ * NOTA: Para entorno local, se devuelve en texto plano
  *
  * @param string $password Contraseña en texto plano
- * @return string Hash de la contraseña
+ * @return string Contraseña en texto plano
  */
 function hashPassword($password) {
-    return password_hash($password, PASSWORD_BCRYPT, ['cost' => 12]);
+    return $password;
 }
 
 /**
  * Función para verificar contraseñas
+ * NOTA: Para entorno local, se compara en texto plano
  *
  * @param string $password Contraseña en texto plano
- * @param string $hash Hash almacenado
+ * @param string $hash Contraseña almacenada en texto plano
  * @return bool True si coincide
  */
 function verifyPassword($password, $hash) {
-    return password_verify($password, $hash);
+    return $password === $hash;
 }
 
 /**
