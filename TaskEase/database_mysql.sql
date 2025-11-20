@@ -65,13 +65,13 @@ CREATE TABLE users (
     CONSTRAINT FK_users_departments FOREIGN KEY (department_id) REFERENCES departments(department_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Insertar usuarios de ejemplo (contraseña: Admin123)
--- Hash bcrypt: $2y$12$LQv3c1yqBWVHxkd0LHAkCOYz6TtxMQJqhN8/LewY5NN0xkqwkbLmW
+-- Insertar usuarios de ejemplo (contraseña en texto plano: Admin123)
+-- NOTA: Para entorno local únicamente, sin hasheo
 INSERT INTO users (username, email, password_hash, full_name, phone, role_id, department_id) VALUES
-('admin', 'admin@taskease.com', '$2y$12$LQv3c1yqBWVHxkd0LHAkCOYz6TtxMQJqhN8/LewY5NN0xkqwkbLmW', 'Administrador General', '1234567890', 1, NULL),
-('supervisor1', 'supervisor@taskease.com', '$2y$12$LQv3c1yqBWVHxkd0LHAkCOYz6TtxMQJqhN8/LewY5NN0xkqwkbLmW', 'Juan Pérez', '1234567891', 2, 1),
-('colaborador1', 'colaborador1@taskease.com', '$2y$12$LQv3c1yqBWVHxkd0LHAkCOYz6TtxMQJqhN8/LewY5NN0xkqwkbLmW', 'María García', '1234567892', 3, 1),
-('colaborador2', 'colaborador2@taskease.com', '$2y$12$LQv3c1yqBWVHxkd0LHAkCOYz6TtxMQJqhN8/LewY5NN0xkqwkbLmW', 'Carlos López', '1234567893', 3, 2);
+('admin', 'admin@taskease.com', 'Admin123', 'Administrador General', '1234567890', 1, NULL),
+('supervisor1', 'supervisor@taskease.com', 'Admin123', 'Juan Pérez', '1234567891', 2, 1),
+('colaborador1', 'colaborador1@taskease.com', 'Admin123', 'María García', '1234567892', 3, 1),
+('colaborador2', 'colaborador2@taskease.com', 'Admin123', 'Carlos López', '1234567893', 3, 2);
 
 -- =============================================
 -- TABLA: Tableros/Espacios de trabajo
